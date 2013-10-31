@@ -1,0 +1,110 @@
+<!-- 메인 갤러리 영역 ###################
+#########################################-->
+
+<!-- 메인 배너 -->
+<div id="main-banner-carousel" class="m-carousel m-fluid m-carousel-photos">
+  <!-- the slider -->
+  <div class="m-carousel-inner m-dragging" style="-webkit-transform: translate3d(0px, 0, 0); -webkit-transition: 0s; transition: 0s;">
+	<!-- the items -->
+  </div>
+  <!-- the controls -->
+  <div class="m-carousel-controls m-carousel-bulleted">
+  </div>
+</div>
+
+<div id="MS_event_banner">
+<!--/block_event_banner/-->
+    <div id="event" class="wrapper clearfix">
+        <!--/if_event_banner/-->
+        <!--/block_event_banner_list/-->
+        <div class="event-imgs">
+            <!--/loop_event_banner/-->
+            <!--/block_event_banner_image/--><img src="<!--/event_banner@image/-->" alt="<!--/event_banner@subject/-->" data-link="<!--/event_banner@link/-->" /><!--/end_block/-->
+            <!--/end_loop/-->
+        </div>
+        <!--/end_block/-->
+        <!--/end_if/-->
+    </div>
+<!--/end_block/-->
+</div>
+
+
+
+<!-- 메인 하단 적용 ####################
+#######################################-->
+
+<style>
+#MS_event_banner{
+display:none;
+}
+</style>
+
+
+
+<!-- 메인 삭제 시작 #####################
+#########################################-->
+
+<!--/block_event_banner/-->
+	<div id="event" class="wrapper clearfix">
+	    <!--/if_event_banner/-->
+	    <!--/block_event_banner_list/-->
+	    <div class="event-imgs">
+		<!--/loop_event_banner/-->
+		<!--/block_event_banner_image/--><img src="<!--/event_banner@image/-->" alt="<!--/event_banner@subject/-->" data-link="<!--/event_banner@link/-->" /><!--/end_block/-->
+		<!--/end_loop/-->
+	    </div>
+	    <!--/end_block/-->
+	    <!--/end_if/-->
+	</div>
+	<!--/end_block/-->
+
+
+
+
+<!-- js 변경 ##########################
+#######################################-->
+
+
+	/**메인배너**/
+	if($('#main-banner-carousel').length){
+		if($("#MS_event_banner").length){
+			var html='';
+			var btn_html='';
+			$("#MS_event_banner").find(".MS_img-area").each(function(key){
+				var src=$(this).find("img").attr("src");
+				var link=$(this).find("img").attr("data-link");
+				console.log(link);
+				html+='<div class="m-item">';
+				html+='<img src="'+src+'" onclick="'+link+'">';
+				html+='</div>';
+				var num=key+1;
+				
+				if(key)
+					btn_html+='<a href="#" data-slide="'+num+'">'+num+'</a>';
+				else
+					btn_html+='<a href="#" data-slide="'+num+'" class="m-active">'+num+'</a>';
+			});
+			
+			if(html){
+				$('#main-banner-carousel .m-carousel-inner').html(html);
+				$('#main-banner-carousel .m-carousel-controls').html(btn_html);
+				$('#main-banner-carousel').carousel();
+				//메인배너 롤링
+				Matn_banner_carousel_rolling();
+				$("#MS_event_banner").remove();
+			}
+		}
+		
+	}
+	
+	
+<!-- }); /* hamberger End */ 아래 적용 ########
+################################################-->
+	
+	function move_event_link(link){
+document.location.href=link;
+}
+
+
+
+
